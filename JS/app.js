@@ -20,19 +20,22 @@ function handleLoginPage() {
         loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
+            messageDiv.className = 'message';
+            messageDiv.textContent = 'Connexion en cours...';
+            
             try {
-                const result = await auth.login(username, password);
-                messageDiv.style.color = '#38a169';
+                const result = await auth.login(email, password);
+                messageDiv.className = 'message success';
                 messageDiv.textContent = result.message;
                 
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
                 }, 1000);
             } catch (error) {
-                messageDiv.style.color = '#e53e3e';
+                messageDiv.className = 'message error';
                 messageDiv.textContent = error.message;
             }
         });
@@ -56,16 +59,19 @@ function handleSignupPage() {
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             
+            messageDiv.className = 'message';
+            messageDiv.textContent = 'Inscription en cours...';
+            
             try {
                 const result = await auth.signup(name, email, password, confirmPassword);
-                messageDiv.style.color = '#38a169';
+                messageDiv.className = 'message success';
                 messageDiv.textContent = result.message;
                 
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2000);
             } catch (error) {
-                messageDiv.style.color = '#e53e3e';
+                messageDiv.className = 'message error';
                 messageDiv.textContent = error.message;
             }
         });
@@ -82,12 +88,15 @@ function handleForgotPasswordPage() {
             
             const email = document.getElementById('email').value;
             
+            messageDiv.className = 'message';
+            messageDiv.textContent = 'Envoi en cours...';
+            
             try {
                 const result = await auth.forgotPassword(email);
-                messageDiv.style.color = '#38a169';
+                messageDiv.className = 'message success';
                 messageDiv.textContent = result.message;
             } catch (error) {
-                messageDiv.style.color = '#e53e3e';
+                messageDiv.className = 'message error';
                 messageDiv.textContent = error.message;
             }
         });
@@ -103,7 +112,7 @@ function handleDashboardPage() {
     const user = auth.getCurrentUser();
     const welcomeElement = document.getElementById('welcomeMessage');
     if (welcomeElement && user) {
-        welcomeElement.textContent = `Bonjour, ${user.username}`;
+        welcomeElement.textContent = `Bonjour, ${user.name || user.username}`;
     }
     
     const logoutBtn = document.getElementById('logoutBtn');
