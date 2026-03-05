@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPage = window.location.pathname.split('/').pop();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
-    if (currentPage === 'index.html' || currentPage === '') {
+    if (currentPage === 'index.html') {
         handleLoginPage();
-    }
-    
-    if (currentPage === 'dashboard.html') {
+    } else if (currentPage === 'signup.html') {
+        handleSignupPage();
+    } else if (currentPage === 'forgot-password.html') {
+        handleForgotPasswordPage();
+    } else if (currentPage === 'dashboard.html') {
         handleDashboardPage();
     }
 });
@@ -29,7 +31,6 @@ function handleLoginPage() {
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
                 }, 1000);
-                
             } catch (error) {
                 messageDiv.style.color = '#e53e3e';
                 messageDiv.textContent = error.message;
@@ -39,6 +40,57 @@ function handleLoginPage() {
     
     if (auth.checkAuth()) {
         window.location.href = 'dashboard.html';
+    }
+}
+
+function handleSignupPage() {
+    const signupForm = document.getElementById('signupForm');
+    const messageDiv = document.getElementById('message');
+    
+    if (signupForm) {
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            try {
+                const result = await auth.signup(name, email, password, confirmPassword);
+                messageDiv.style.color = '#38a169';
+                messageDiv.textContent = result.message;
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } catch (error) {
+                messageDiv.style.color = '#e53e3e';
+                messageDiv.textContent = error.message;
+            }
+        });
+    }
+}
+
+function handleForgotPasswordPage() {
+    const forgotForm = document.getElementById('forgotPasswordForm');
+    const messageDiv = document.getElementById('message');
+    
+    if (forgotForm) {
+        forgotForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            try {
+                const result = await auth.forgotPassword(email);
+                messageDiv.style.color = '#38a169';
+                messageDiv.textContent = result.message;
+            } catch (error) {
+                messageDiv.style.color = '#e53e3e';
+                messageDiv.textContent = error.message;
+            }
+        });
     }
 }
 

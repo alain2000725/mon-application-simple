@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Application Simple</title>
+    <title>Inscription - Application Simple</title>
     <style>
         * {
             margin: 0;
@@ -56,7 +56,7 @@
         button {
             width: 100%;
             padding: 12px;
-            background: #667eea;
+            background: #48bb78;
             color: white;
             border: none;
             border-radius: 5px;
@@ -68,8 +68,6 @@
         .links {
             margin-top: 20px;
             text-align: center;
-            display: flex;
-            justify-content: space-between;
         }
         
         .links a {
@@ -87,22 +85,29 @@
 </head>
 <body>
     <div class="container">
-        <h2>🔐 Connexion</h2>
-        <form id="loginForm">
+        <h2>📝 Inscription</h2>
+        <form id="signupForm">
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" required>
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" required>
             </div>
-            <button type="submit">Se connecter</button>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmer mot de passe</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <button type="submit">S'inscrire</button>
         </form>
         
         <div class="links">
-            <a href="signup.html">Créer un compte</a>
-            <a href="forgot-password.html">Mot de passe oublié ?</a>
+            <a href="index.html">Déjà un compte ? Se connecter</a>
         </div>
         
         <div id="message" class="message"></div>

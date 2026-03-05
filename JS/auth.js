@@ -43,6 +43,50 @@ class Auth {
         });
     }
 
+    signup(name, email, password, confirmPassword) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (password !== confirmPassword) {
+                    reject({
+                        success: false,
+                        message: 'Les mots de passe ne correspondent pas'
+                    });
+                    return;
+                }
+                
+                if (name && email && password) {
+                    resolve({
+                        success: true,
+                        message: 'Inscription réussie ! Vous pouvez maintenant vous connecter.'
+                    });
+                } else {
+                    reject({
+                        success: false,
+                        message: 'Tous les champs sont requis'
+                    });
+                }
+            }, 500);
+        });
+    }
+
+    forgotPassword(email) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (email) {
+                    resolve({
+                        success: true,
+                        message: 'Un email de réinitialisation a été envoyé si l\'adresse existe.'
+                    });
+                } else {
+                    reject({
+                        success: false,
+                        message: 'Email requis'
+                    });
+                }
+            }, 500);
+        });
+    }
+
     logout() {
         localStorage.removeItem('currentUser');
         this.isAuthenticated = false;
