@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Application Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+        }
+        
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .logout-btn {
+            padding: 8px 16px;
+            background: #e53e3e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c53030;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .welcome-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-card h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .welcome-card p {
+            color: #666;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .activities {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .activities h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .activity-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-title {
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .activity-time {
+            color: #999;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Mon Application</div>
+        <button class="logout-btn" id="logoutBtn">Déconnexion</button>
+    </nav>
+    
+    <div class="container">
+        <div class="welcome-card">
+            <h1 id="welcomeMessage">Bonjour, Utilisateur</h1>
+            <p>Bienvenue sur votre tableau de bord</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Projets actifs</h3>
+                <div class="stat-value">12</div>
+            </div>
+            <div class="stat-card">
+                <h3>Tâches terminées</h3>
+                <div class="stat-value">48</div>
+            </div>
+            <div class="stat-card">
+                <h3>Messages</h3>
+                <div class="stat-value">7</div>
+            </div>
+        </div>
+        
+        <div class="activities">
+            <h2>Activités récentes</h2>
+            <div class="activity-item">
+                <span class="activity-title">Mise à jour du projet "Dashboard"</span>
+                <span class="activity-time">Il y a 5 minutes</span>
+            </div>
+            <div class="activity-item">
+                <span class="activity-title">Nouveau commentaire sur la tâche #123</span>
+                <span class="activity-time">Il y a 2 heures</span>
+            </div>
+            <div class="activity-item">
+                <span class="activity-title">Fichier uploadé</span>
+                <span class="activity-time">Il y a 3 heures</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/auth.js"></script>
+    <script src="JS/app.js"></script>
+</body>
+</html>
